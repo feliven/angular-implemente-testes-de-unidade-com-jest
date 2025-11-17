@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { Livro } from './livro';
 import { AvaliacaoEstrelasComponent } from '../avaliacao-estrelas/avaliacao-estrelas.component';
@@ -11,5 +11,6 @@ import { AvaliacaoEstrelasComponent } from '../avaliacao-estrelas/avaliacao-estr
   styleUrl: './livro.component.css',
 })
 export class LivroComponent {
-  @Input() livro!: Livro;
+  // @Input() livro!: Livro;
+  livro = input<Livro>();
 }

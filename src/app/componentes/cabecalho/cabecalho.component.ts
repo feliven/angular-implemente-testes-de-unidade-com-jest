@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-cabecalho',
@@ -7,6 +7,9 @@ import { Component, Input } from '@angular/core';
   styleUrl: './cabecalho.component.css',
 })
 export class CabecalhoComponent {
-  @Input() src = '';
-  @Input() alt = '';
+  // @Input() src = '';
+  // @Input() alt = '';
+
+  src = input<string>();
+  alt = input<string>();
 }
