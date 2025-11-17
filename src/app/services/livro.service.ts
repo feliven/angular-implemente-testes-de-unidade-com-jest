@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { GeneroLiterario, Livro } from '../componentes/livro/livro';
-import { livros } from '../mock-livros';
+import { livrosMockados } from '../mock-livros';
 
 export class ErroGeneroLiterario extends Error {
   constructor(mensagem: string) {
@@ -43,7 +43,7 @@ export class LivroService {
       this.livrosPorGenero.set(genero.id, []);
     });
 
-    livros.forEach((livro) => {
+    livrosMockados.forEach((livro) => {
       this.livrosPorGenero.get(livro.genero.id)?.push(livro);
     });
   }

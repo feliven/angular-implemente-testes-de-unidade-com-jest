@@ -1,4 +1,5 @@
 import { Livro } from '../componentes/livro/livro';
+import { livrosMockados } from '../mock-livros';
 import { LivroService } from './livro.service';
 
 describe('LivroService', () => {
@@ -28,5 +29,16 @@ describe('LivroService', () => {
     const livrosPorGenero = service.obterLivrosPorGenero('romance');
 
     expect(livrosPorGenero).toContain(novoLivro);
+  });
+
+  it('deveria recuperar livros por gênero', () => {
+    service = new LivroService();
+
+    const livrosPorGenero = service.obterLivrosPorGenero('romance');
+    const livrosEsperados = livrosMockados.filter(
+      (livro) => livro.genero.id === 'romance'
+    );
+
+    expect(livrosPorGenero).toEqual(livrosEsperados);
   });
 });

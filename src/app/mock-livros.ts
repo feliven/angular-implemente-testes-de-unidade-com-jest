@@ -1,6 +1,6 @@
 import { Livro } from './componentes/livro/livro';
 
-export const livros: Livro[] = [
+export const livrosMockados: Livro[] = [
   {
     titulo: 'As ondas',
     autoria: 'Virginia Woolf',
