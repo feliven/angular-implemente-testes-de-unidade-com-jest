@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, effect, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,18 +15,35 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ],
 })
 export class AvaliacaoEstrelasComponent implements ControlValueAccessor {
-  @Input() classificacao: number = 1;
+  // @Input() classificacao: number = 1;
+
+  // Input signal (somente leitura externa)
+  classificacao = input<number>(1);
+
+  // Sinal interno mutável usado pela interação
+  private signalClassificacao = signal<number>(1);
+
   readOnly: boolean = true;
   estrelas: number[] = [1, 2, 3, 4, 5];
-  onChange = (classificacao: number) => {};
+  onChange = (signalClassificacao: number) => {};
   onTouched = () => {};
 
+  // Sincroniza quando pai muda a classificação
+  constructor() {
+    effect(() => {
+      const classificacaoVindaDoElementoPai = this.classificacao();
+      this.signalClassificacao.set(
+        this.isClassificationValid(classificacaoVindaDoElementoPai)
+          ? classificacaoVindaDoElementoPai
+          : 1
+      );
+    });
+  }
+
   writeValue(classificacao: number): void {
-    if (this.isClassificationValid(classificacao)) {
-      this.classificacao = classificacao;
-    } else {
-      this.classificacao = 1;
-    }
+    this.signalClassificacao.set(
+      this.isClassificationValid(classificacao) ? classificacao : 1
+    );
   }
 
   private isClassificationValid(classificacao: number): boolean {
@@ -46,10 +63,14 @@ export class AvaliacaoEstrelasComponent implements ControlValueAccessor {
   }
 
   classificar(classificacao: number) {
-    if (!this.readOnly) {
-      this.classificacao = classificacao;
-      this.onChange(this.classificacao);
-      this.onTouched();
-    }
+    if (this.readOnly) return;
+
+    this.signalClassificacao.set(classificacao);
+    this.onChange(this.signalClassificacao());
+    this.onTouched();
+  }
+
+  valorAtualClassificacao() {
+    return this.signalClassificacao();
   }
 }
