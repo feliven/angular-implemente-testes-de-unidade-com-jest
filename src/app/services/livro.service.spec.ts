@@ -5,15 +5,19 @@ import { LivroService } from './livro.service';
 describe('LivroService', () => {
   let service: LivroService;
 
+  beforeEach(() => {
+    service = new LivroService();
+  });
+
   // AAA = arrange, act, assert
 
   it('deveria ser criado', () => {
-    service = new LivroService();
+    // service = new LivroService();
     expect(service).toBeTruthy();
   });
 
   it('deveria adicionar um novo livro', () => {
-    service = new LivroService();
+    // service = new LivroService();
 
     const novoLivro: Livro = {
       titulo: 'Novo Livro',
@@ -32,7 +36,7 @@ describe('LivroService', () => {
   });
 
   it('deveria recuperar livros por gênero', () => {
-    service = new LivroService();
+    // service = new LivroService();
 
     const livrosPorGenero = service.obterLivrosPorGenero('romance');
     const livrosEsperados = livrosMockados.filter(
