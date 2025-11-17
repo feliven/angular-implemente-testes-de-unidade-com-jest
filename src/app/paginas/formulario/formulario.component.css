@@ -8,18 +8,18 @@
 
 .cabecalho .linha-colorida {
   width: 64px;
-  border-bottom: 4px solid #6278F7;
+  border-bottom: 4px solid #6278f7;
   display: block;
   margin: 0 auto;
 }
 
-h2 button{
-  font-family: 'Prata';
+h2 button {
+  font-family: "Prata";
   font-size: 40px;
   font-weight: 400;
   line-height: 72px;
   text-align: center;
-  color: #6278F7;
+  color: #6278f7;
   text-decoration: none;
   border: none;
   background-color: transparent;
@@ -35,11 +35,11 @@ h2 button{
 .formulario form {
   width: 782px;
   height: 855px;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   border-radius: 20px;
   padding: 40px;
   gap: 10px;
-  box-shadow: 8px 8px 16px rgba(0,0,0, 0.08);
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .formulario__input label {
@@ -57,7 +57,7 @@ h2 button{
   margin: 0;
 }
 
-.estrelas{
+.estrelas {
   align-self: flex-start;
   padding-left: 44px;
 }
@@ -68,7 +68,8 @@ h2 button{
   align-items: center;
 }
 
-.formulario__input input, .formulario__input select {
+.formulario__input input,
+.formulario__input select {
   font-family: var(--font-montserrat);
   font-size: 18px;
   color: #212121;
@@ -80,7 +81,7 @@ h2 button{
   font-family: var(--font-montserrat);
   font-size: 16px;
   font-weight: 400;
-  color: #A4A4A4;
+  color: #a4a4a4;
 }
 
 select {
@@ -115,8 +116,9 @@ label {
   font-size: 24px;
 }
 
-input, select {
-  background-color: #FFF;
+input,
+select {
+  background-color: #fff;
   box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);
   width: 100%;
   border: none;
@@ -134,7 +136,7 @@ input, select {
   padding: 24px 32px;
   border: none;
   cursor: pointer;
-  color: #FFF;
+  color: #fff;
   margin: 32px 0;
   width: 280px;
   height: 74px;
@@ -144,7 +146,7 @@ input, select {
 }
 
 .btn-submit:hover {
-  color: #95FFD4;
+  color: #95ffd4;
 }
 
 .classificacao {
@@ -177,16 +179,11 @@ input, select {
 }
 
 h3 {
-  font-family: 'Prata';
+  font-family: "Prata";
   font-size: 28px;
   font-weight: 400;
   line-height: 38px;
   text-align: left;
   padding-left: 36px;
-  color: #2E2E2E;
+  color: #2e2e2e;
 }
-
-
-
-
-

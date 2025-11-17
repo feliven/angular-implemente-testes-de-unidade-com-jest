@@ -7,13 +7,17 @@
 </section>
 @for (genero of generos; track genero) {
   <section class="generos" [ngClass]="genero.id">
-    <h3>{{ genero.value }}<span class="linha-colorida" [ngClass]="genero.id"></span></h3>
+    <h3>
+      {{ genero.value
+      }}<span class="linha-colorida" [ngClass]="genero.id"></span>
+    </h3>
     <div class="livros-genero">
-      @for (livro of livroService.obterLivrosPorGenero(genero.id); track livro) {
-        <app-livro
-          [livro]="livro"
-        />
+      @for (
+        livro of livroService.obterLivrosPorGenero(genero.id);
+        track livro
+      ) {
+        <app-livro [livro]="livro" />
       }
-      </div>
+    </div>
   </section>
 }

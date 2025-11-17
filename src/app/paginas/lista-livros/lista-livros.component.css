@@ -1,17 +1,17 @@
 h2 {
-  font-family: 'Prata';
+  font-family: "Prata";
   font-size: 40px;
   font-weight: 400;
   line-height: 72px;
   text-align: center;
-  color: #6278F7;
+  color: #6278f7;
 }
 
 .livros-genero {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content:center;
+  justify-content: center;
 }
 
 .generos {
@@ -27,47 +27,47 @@ h2 {
 }
 
 .romance {
-  background-color: #E8FFFF;
+  background-color: #e8ffff;
 }
 
 .generos .romance {
-  border-bottom: 4px solid #82CFFA;
+  border-bottom: 4px solid #82cffa;
 }
 
 .misterio {
-  background-color: #E9FFE3;
+  background-color: #e9ffe3;
 }
 
 .generos .misterio {
-  border-bottom: 4px solid #A6D157;
+  border-bottom: 4px solid #a6d157;
 }
 
 .fantasia {
-  background-color: #FFE3E3;
+  background-color: #ffe3e3;
 }
 
 .generos .fantasia {
-  border-bottom: 4px solid #E06B69;
+  border-bottom: 4px solid #e06b69;
 }
 
 .ficcao-cientifica {
-  background-color: #FFF0FA;
+  background-color: #fff0fa;
 }
 
 .generos .ficcao-cientifica {
-  border-bottom: 4px solid #DB6EBF;
+  border-bottom: 4px solid #db6ebf;
 }
 
 .tecnicos {
-  background-color: #FFF1E4;
+  background-color: #fff1e4;
 }
 
 .generos .tecnicos {
-  border-bottom: 4px solid #FF8A29;
+  border-bottom: 4px solid #ff8a29;
 }
 
 h3 {
-  font-family: 'Prata';
+  font-family: "Prata";
   font-size: 28px;
   font-weight: 400;
   line-height: 38px;
@@ -88,11 +88,11 @@ h3 {
   padding: 16px 20px;
   background-color: #6278f7;
   border-radius: 8px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 16px;
   font-weight: 700;
   line-height: 26px;
-  color: #FFF;
+  color: #fff;
   text-align: left;
   margin-bottom: 36px;
 }
@@ -103,9 +103,7 @@ h3 {
 
 .cabecalho .linha-colorida {
   width: 64px;
-  border-bottom: 4px solid #6278F7;
+  border-bottom: 4px solid #6278f7;
   display: block;
   margin: 0 auto;
 }
-
-

@@ -7,24 +7,20 @@ import { LivroService } from '../../services/livro.service';
 import { AvaliacaoEstrelasComponent } from '../../componentes/avaliacao-estrelas/avaliacao-estrelas.component';
 
 @Component({
-    selector: 'app-formulario',
-    imports: [
-        ReactiveFormsModule,
-        AvaliacaoEstrelasComponent,
-        RouterLink
-    ],
-    templateUrl: './formulario.component.html',
-    styleUrl: './formulario.component.css'
+  selector: 'app-formulario',
+  imports: [ReactiveFormsModule, AvaliacaoEstrelasComponent, RouterLink],
+  templateUrl: './formulario.component.html',
+  styleUrl: './formulario.component.css',
 })
-export class FormularioComponent implements OnInit{
+export class FormularioComponent implements OnInit {
   formulario!: FormGroup;
   livros: Livro[] = [];
-  generos: GeneroLiterario[] = []
+  generos: GeneroLiterario[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private livroService: LivroService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -34,15 +30,15 @@ export class FormularioComponent implements OnInit{
       imagem: [''],
       genero: [''],
       dataLeitura: [''],
-      classificacao: [null]
-    })
-    this.generos = this.livroService.generos
+      classificacao: [null],
+    });
+    this.generos = this.livroService.generos;
   }
 
   adicionarLivro() {
     const novoLivro = {
       ...this.formulario.value,
-      genero: this.generos.find(g => g.id === this.formulario.value.genero),
+      genero: this.generos.find((g) => g.id === this.formulario.value.genero),
     };
 
     this.livroService.adicionarLivro(novoLivro);

@@ -6,14 +6,14 @@ import { ListaLivrosComponent } from './paginas/lista-livros/lista-livros.compon
 export const routes: Routes = [
   {
     path: 'formulario',
-    component: FormularioComponent
+    component: FormularioComponent,
   },
   {
     path: 'lista-livros',
-    component: ListaLivrosComponent
+    component: ListaLivrosComponent,
   },
   {
     path: '**',
-    component: ListaLivrosComponent
-  }
+    component: ListaLivrosComponent,
+  },
 ];

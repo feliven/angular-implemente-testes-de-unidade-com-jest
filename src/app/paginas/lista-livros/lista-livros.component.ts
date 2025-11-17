@@ -8,10 +8,10 @@ import { LivroService } from '../../services/livro.service';
 import { FormularioComponent } from '../formulario/formulario.component';
 
 @Component({
-    selector: 'app-lista-livros',
-    imports: [LivroComponent, FormularioComponent, CommonModule, RouterLink],
-    templateUrl: './lista-livros.component.html',
-    styleUrl: './lista-livros.component.css'
+  selector: 'app-lista-livros',
+  imports: [LivroComponent, CommonModule, RouterLink],
+  templateUrl: './lista-livros.component.html',
+  styleUrl: './lista-livros.component.css',
 })
 export class ListaLivrosComponent implements OnInit {
   livros: Livro[] = [];
