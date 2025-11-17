@@ -1,6 +1,6 @@
-import { Livro } from '../componentes/livro/livro';
-import { livrosMockados } from '../mock-livros';
+import { GeneroLiterario, Livro } from '../componentes/livro/livro';
 import { LivroService } from './livro.service';
+import { livrosMockados } from '../mock-livros';
 
 describe('LivroService', () => {
   let service: LivroService;
@@ -44,5 +44,32 @@ describe('LivroService', () => {
     );
 
     expect(livrosPorGenero).toEqual(livrosEsperados);
+  });
+
+  it('deveria inicializar os gêneros corretamente', () => {
+    const generosEsperados: GeneroLiterario[] = [
+      {
+        id: 'romance',
+        value: 'Romance',
+      },
+      {
+        id: 'misterio',
+        value: 'Mistério',
+      },
+      {
+        id: 'fantasia',
+        value: 'Fantasia',
+      },
+      {
+        id: 'ficcao-cientifica',
+        value: 'Ficção Científica',
+      },
+      {
+        id: 'tecnicos',
+        value: 'Técnicos',
+      },
+    ];
+
+    expect(service.generos).toEqual(generosEsperados);
   });
 });
