@@ -26,7 +26,7 @@ export class AvaliacaoEstrelasComponent implements ControlValueAccessor {
   readOnly: boolean = true;
   estrelas: number[] = [1, 2, 3, 4, 5];
   onChange = (signalClassificacao: number) => {};
-  onTouched = () => {};
+  onTouched: () => void = () => {};
 
   // Sincroniza quando pai muda a classificação
   constructor() {
