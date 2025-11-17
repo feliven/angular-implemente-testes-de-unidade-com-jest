@@ -7,15 +7,14 @@ import { LivroService } from '../../services/livro.service';
 import { AvaliacaoEstrelasComponent } from '../../componentes/avaliacao-estrelas/avaliacao-estrelas.component';
 
 @Component({
-  selector: 'app-formulario',
-  standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    AvaliacaoEstrelasComponent,
-    RouterLink
-  ],
-  templateUrl: './formulario.component.html',
-  styleUrl: './formulario.component.css'
+    selector: 'app-formulario',
+    imports: [
+        ReactiveFormsModule,
+        AvaliacaoEstrelasComponent,
+        RouterLink
+    ],
+    templateUrl: './formulario.component.html',
+    styleUrl: './formulario.component.css'
 })
 export class FormularioComponent implements OnInit{
   formulario!: FormGroup;

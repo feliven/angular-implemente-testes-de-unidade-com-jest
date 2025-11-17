@@ -2,18 +2,17 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'app-avaliacao-estrelas',
-  standalone: true,
-  imports: [],
-  templateUrl: './avaliacao-estrelas.component.html',
-  styleUrl: './avaliacao-estrelas.component.css',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AvaliacaoEstrelasComponent),
-      multi: true
-    }
-  ]
+    selector: 'app-avaliacao-estrelas',
+    imports: [],
+    templateUrl: './avaliacao-estrelas.component.html',
+    styleUrl: './avaliacao-estrelas.component.css',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => AvaliacaoEstrelasComponent),
+            multi: true
+        }
+    ]
 })
 export class AvaliacaoEstrelasComponent implements ControlValueAccessor {
 
