@@ -7,12 +7,23 @@ describe('CabecalhoComponent', () => {
   let fixture: ComponentFixture<CabecalhoComponent>;
 
   beforeEach(() => {
+    // 1. Configura o módulo de teste
+    TestBed.configureTestingModule({
+      imports: [CabecalhoComponent],
+    });
+
+    // 2. Cria instância no contexto de injeção
     TestBed.runInInjectionContext(() => {
       componente = new CabecalhoComponent();
     });
+
+    // 3. Cria o componente com fixture
     fixture = TestBed.createComponent(CabecalhoComponent);
     componente = fixture.componentInstance;
   });
+
+  // Cada it() recebe seu próprio componente e fixture limpos,
+  // garantindo que testes não interfiram uns com os outros.
 
   it('deveria ser criado', () => {
     expect(componente).toBeTruthy();

@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AvaliacaoEstrelasComponent } from './avaliacao-estrelas.component';
-import { Component } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 // @Component({
 //   standalone: true,
@@ -19,9 +20,20 @@ describe('AvaliacaoEstrelasComponent', () => {
   let fixture: ComponentFixture<AvaliacaoEstrelasComponent>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: NG_VALUE_ACCESSOR,
+          useExisting: forwardRef(() => AvaliacaoEstrelasComponent),
+          multi: true,
+        },
+      ],
+    });
+
     TestBed.runInInjectionContext(() => {
       componente = new AvaliacaoEstrelasComponent();
     });
+
     fixture = TestBed.createComponent(AvaliacaoEstrelasComponent);
     componente = fixture.componentInstance;
   });
