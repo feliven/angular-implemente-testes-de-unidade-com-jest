@@ -30,13 +30,16 @@ describe('AvaliacaoEstrelasComponent', () => {
       ],
     });
 
-    TestBed.runInInjectionContext(() => {
-      componente = new AvaliacaoEstrelasComponent();
-    });
+    // TestBed.runInInjectionContext(() => {
+    //   componente = new AvaliacaoEstrelasComponent();
+    // });
 
     fixture = TestBed.createComponent(AvaliacaoEstrelasComponent);
     componente = fixture.componentInstance;
+    fixture.detectChanges(); // Adicione para inicializar o DOM
   });
+
+  // testes básicos de inicialização
 
   it('deveria ser criado', () => {
     expect(componente).toBeTruthy();
@@ -46,10 +49,30 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(componente.classificacao).toBeDefined();
   });
 
+  it('deveria criar componente usando runInInjectionContext', () => {
+    TestBed.runInInjectionContext(() => {
+      const novoComponente = new AvaliacaoEstrelasComponent();
+      expect(novoComponente).toBeTruthy();
+      expect(novoComponente.valorAtualClassificacao()).toBe(1);
+      expect(novoComponente.estrelas).toEqual([1, 2, 3, 4, 5]);
+      expect(novoComponente.readOnly).toBe(true);
+    });
+  });
+
+  it('deveria ter array estrelas com valores de 1 a 5', () => {
+    expect(componente.estrelas).toEqual([1, 2, 3, 4, 5]);
+  });
+
   it('deveria definir propriedades readOnly e estrelas', () => {
     expect(componente.readOnly).toBeDefined();
     expect(componente.estrelas).toBeDefined();
   });
+
+  it('deveria inicializar com classificacao padrão 1', () => {
+    expect(componente.valorAtualClassificacao()).toBe(1);
+  });
+
+  // testes sobre onChange e onTouched
 
   it('deveria registrar função onChange', () => {
     const fn = jest.fn();
@@ -76,6 +99,8 @@ describe('AvaliacaoEstrelasComponent', () => {
     componente.classificar(4);
     expect(onTouchedSpy).toHaveBeenCalled();
   });
+
+  // testes para classificar quando readOnly = true ou false
 
   it('não deveria classificar quando readOnly = true', () => {
     componente.readOnly = true;
@@ -118,6 +143,13 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(componente.valorAtualClassificacao()).toBe(4);
   });
 
+  // testes quando writeValue recebe valor válido ou inválido
+
+  it('deveria definir classificacao válida via writeValue', () => {
+    componente.writeValue(3);
+    expect(componente.valorAtualClassificacao()).toBe(3);
+  });
+
   it('deveria definir classificacao como 1 quando writeValue recebe valor inválido', () => {
     componente.writeValue(0);
     expect(componente.valorAtualClassificacao()).toBe(1);
@@ -134,15 +166,6 @@ describe('AvaliacaoEstrelasComponent', () => {
     });
 
     expect(componente.valorAtualClassificacao()).toBe(1);
-  });
-
-  it('deveria inicializar com classificacao padrão 1', () => {
-    expect(componente.valorAtualClassificacao()).toBe(1);
-  });
-
-  it('deveria definir classificacao válida via writeValue', () => {
-    componente.writeValue(3);
-    expect(componente.valorAtualClassificacao()).toBe(3);
   });
 
   // ---------------------------------------------------------------------
