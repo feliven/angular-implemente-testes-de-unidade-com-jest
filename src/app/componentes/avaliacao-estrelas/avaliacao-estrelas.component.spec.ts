@@ -168,6 +168,108 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(componente.valorAtualClassificacao()).toBe(1);
   });
 
+  // testes sobre atualizar o DOM
+
+  it('deveria ter exatamente 5 botões de estrela', () => {
+    const botoes = fixture.nativeElement.querySelectorAll('button');
+    expect(botoes.length).toBe(5);
+  });
+
+  it('deveria atualizar o DOM quando a classificação muda', () => {
+    componente.readOnly = false;
+    const classificacao = 3;
+    componente.classificar(classificacao);
+    fixture.detectChanges();
+    // se um teste não passar, adicione fixture.detectChanges()
+    // para verificar se é devido à falta de atualização do DOM!
+
+    const estrelaPreenchida = fixture.nativeElement.querySelector('.filled');
+    expect(estrelaPreenchida).toBeTruthy();
+  });
+
+  it('deveria atualizar o DOM quando a classificação muda - estrelasPreenchidas', () => {
+    componente.readOnly = false;
+    const classificacao = 3;
+    componente.classificar(classificacao);
+    fixture.detectChanges();
+
+    const estrelasPreenchidas =
+      fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).toBe(3);
+  });
+
+  it('não deveria atualizar o DOM quando a classificação é inválida', () => {
+    componente.readOnly = false;
+
+    // Define uma classificação válida primeiro
+    componente.writeValue(3);
+    fixture.detectChanges();
+
+    // Tenta classificar com valor inválido
+    // classificar() verifica readOnly e valida o input
+    componente.classificar(0);
+    fixture.detectChanges();
+
+    const estrelasPreenchidas =
+      fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).not.toBe(0);
+    expect(componente.valorAtualClassificacao()).not.toBe(0);
+  });
+
+  it('deveria permitir classificações sequenciais alterando o DOM', () => {
+    // ao clicar na terceira estrelinha e depois na quinta, a alteração ocorre conforme esperado
+
+    componente.readOnly = false;
+
+    componente.classificar(2);
+    fixture.detectChanges();
+    let estrelasPreenchidas = fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).toBe(2);
+
+    componente.classificar(5);
+    fixture.detectChanges();
+    estrelasPreenchidas = fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).toBe(5);
+
+    componente.classificar(1);
+    fixture.detectChanges();
+    estrelasPreenchidas = fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).toBe(1);
+  });
+
+  it('não deveria reagir a cliques quando readOnly = true', () => {
+    componente.readOnly = true;
+    componente.writeValue(2);
+    fixture.detectChanges();
+
+    const botoes = fixture.nativeElement.querySelectorAll('button');
+    botoes[4].click(); // quinta estrela
+    fixture.detectChanges();
+
+    expect(componente.valorAtualClassificacao()).toBe(2);
+    const estrelasPreenchidas =
+      fixture.nativeElement.querySelectorAll('.filled');
+    expect(estrelasPreenchidas.length).toBe(2);
+  });
+
+  it('deveria aplicar classe filled corretamente para cada classificação', () => {
+    componente.readOnly = false;
+
+    [1, 2, 3, 4, 5].forEach((rating) => {
+      componente.classificar(rating);
+      fixture.detectChanges();
+
+      const botoes = fixture.nativeElement.querySelectorAll('button');
+      botoes.forEach((botao: HTMLElement, index: number) => {
+        if (index < rating) {
+          expect(botao.classList.contains('filled')).toBe(true);
+        } else {
+          expect(botao.classList.contains('filled')).toBe(false);
+        }
+      });
+    });
+  });
+
   // ---------------------------------------------------------------------
 
   //   it('deveria definir readOnly ao chamar setDisabledState', () => {
