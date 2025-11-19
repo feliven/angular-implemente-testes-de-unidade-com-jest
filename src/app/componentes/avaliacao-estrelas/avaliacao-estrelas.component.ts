@@ -63,7 +63,7 @@ export class AvaliacaoEstrelasComponent implements ControlValueAccessor {
   }
 
   classificar(classificacao: number) {
-    if (this.readOnly) return;
+    if (this.readOnly || !this.isClassificationValid(classificacao)) return;
 
     this.signalClassificacao.set(classificacao);
     this.onChange(this.signalClassificacao());
