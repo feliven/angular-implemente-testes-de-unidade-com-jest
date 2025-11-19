@@ -77,6 +77,47 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(onTouchedSpy).toHaveBeenCalled();
   });
 
+  it('não deveria classificar quando readOnly = true', () => {
+    componente.readOnly = true;
+    const onChangeSpy = jest.fn();
+    componente.registerOnChange(onChangeSpy);
+
+    componente.classificar(4);
+
+    expect(componente.valorAtualClassificacao()).toBe(1);
+    expect(onChangeSpy).not.toHaveBeenCalled();
+  });
+
+  it('não deveria classificar quando readOnly = true -- onChange', () => {
+    componente.readOnly = true;
+    const onChangeSpy = jest.spyOn(componente, 'onChange');
+    componente.classificar(4);
+    expect(onChangeSpy).not.toHaveBeenCalled();
+    expect(componente.valorAtualClassificacao()).not.toBe(4);
+  });
+
+  it('deveria classificar quando readOnly = false', () => {
+    componente.readOnly = false;
+    const onChangeSpy = jest.fn();
+    const onTouchedSpy = jest.fn();
+    componente.registerOnChange(onChangeSpy);
+    componente.registerOnTouched(onTouchedSpy);
+
+    componente.classificar(4);
+
+    expect(componente.valorAtualClassificacao()).toBe(4);
+    expect(onChangeSpy).toHaveBeenCalledWith(4);
+    expect(onTouchedSpy).toHaveBeenCalled();
+  });
+
+  it('deveria classificar quando readOnly = false -- onChange', () => {
+    componente.readOnly = false;
+    const onChangeSpy = jest.spyOn(componente, 'onChange');
+    componente.classificar(4);
+    expect(onChangeSpy).toHaveBeenCalled();
+    expect(componente.valorAtualClassificacao()).toBe(4);
+  });
+
   // ---------------------------------------------------------------------
 
   //   it('deveria inicializar com classificacao padrão 1', () => {
@@ -102,31 +143,6 @@ describe('AvaliacaoEstrelasComponent', () => {
 
   //     componente.setDisabledState?.(false);
   //     expect(componente.readOnly).toBe(false);
-  //   });
-
-  //   it('deveria classificar quando não estiver readOnly', () => {
-  //     componente.readOnly = false;
-  //     const onChangeSpy = jest.fn();
-  //     const onTouchedSpy = jest.fn();
-  //     componente.registerOnChange(onChangeSpy);
-  //     componente.registerOnTouched(onTouchedSpy);
-
-  //     componente.classificar(4);
-
-  //     expect(componente.valorAtualClassificacao()).toBe(4);
-  //     expect(onChangeSpy).toHaveBeenCalledWith(4);
-  //     expect(onTouchedSpy).toHaveBeenCalled();
-  //   });
-
-  //   it('não deveria classificar quando estiver readOnly', () => {
-  //     componente.readOnly = true;
-  //     const onChangeSpy = jest.fn();
-  //     componente.registerOnChange(onChangeSpy);
-
-  //     componente.classificar(4);
-
-  //     expect(componente.valorAtualClassificacao()).toBe(1);
-  //     expect(onChangeSpy).not.toHaveBeenCalled();
   //   });
 
   //   it('deveria ter array estrelas com valores de 1 a 5', () => {
