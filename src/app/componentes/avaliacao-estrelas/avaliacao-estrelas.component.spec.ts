@@ -51,6 +51,34 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(componente.estrelas).toBeDefined();
   });
 
+  it('deveria registrar função onChange', () => {
+    const fn = jest.fn();
+    componente.registerOnChange(fn);
+    expect(componente.onChange).toBe(fn);
+  });
+
+  it('deveria registrar função onChange com spyOn', () => {
+    componente.readOnly = false;
+    const onChangeSpy = jest.spyOn(componente, 'onChange');
+    componente.classificar(4);
+    expect(onChangeSpy).toHaveBeenCalled();
+  });
+
+  it('deveria registrar função onTouched', () => {
+    const fn = jest.fn();
+    componente.registerOnTouched(fn);
+    expect(componente.onTouched).toBe(fn);
+  });
+
+  it('deveria registrar função onTouched com spyOn', () => {
+    componente.readOnly = false;
+    const onTouchedSpy = jest.spyOn(componente, 'onTouched');
+    componente.classificar(4);
+    expect(onTouchedSpy).toHaveBeenCalled();
+  });
+
+  // ---------------------------------------------------------------------
+
   //   it('deveria inicializar com classificacao padrão 1', () => {
   //     expect(componente.valorAtualClassificacao()).toBe(1);
   //   });
@@ -66,18 +94,6 @@ describe('AvaliacaoEstrelasComponent', () => {
 
   //     componente.writeValue(6);
   //     expect(componente.valorAtualClassificacao()).toBe(1);
-  //   });
-
-  //   it('deveria registrar função onChange', () => {
-  //     const fn = jest.fn();
-  //     componente.registerOnChange(fn);
-  //     expect(componente.onChange).toBe(fn);
-  //   });
-
-  //   it('deveria registrar função onTouched', () => {
-  //     const fn = jest.fn();
-  //     componente.registerOnTouched(fn);
-  //     expect(componente.onTouched).toBe(fn);
   //   });
 
   //   it('deveria definir readOnly ao chamar setDisabledState', () => {
