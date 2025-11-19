@@ -118,24 +118,34 @@ describe('AvaliacaoEstrelasComponent', () => {
     expect(componente.valorAtualClassificacao()).toBe(4);
   });
 
+  it('deveria definir classificacao como 1 quando writeValue recebe valor inválido', () => {
+    componente.writeValue(0);
+    expect(componente.valorAtualClassificacao()).toBe(1);
+
+    componente.writeValue(6);
+    expect(componente.valorAtualClassificacao()).toBe(1);
+  });
+
+  it('deveria definir classificacao como 1 quando writeValue recebe valor inválido -- com Array', () => {
+    const valoresInvalidos = [-6, 0, 'abc', undefined];
+
+    valoresInvalidos.forEach((valorInvalido) => {
+      componente.writeValue(valorInvalido as number);
+    });
+
+    expect(componente.valorAtualClassificacao()).toBe(1);
+  });
+
+  it('deveria inicializar com classificacao padrão 1', () => {
+    expect(componente.valorAtualClassificacao()).toBe(1);
+  });
+
+  it('deveria definir classificacao válida via writeValue', () => {
+    componente.writeValue(3);
+    expect(componente.valorAtualClassificacao()).toBe(3);
+  });
+
   // ---------------------------------------------------------------------
-
-  //   it('deveria inicializar com classificacao padrão 1', () => {
-  //     expect(componente.valorAtualClassificacao()).toBe(1);
-  //   });
-
-  //   it('deveria definir classificacao válida via writeValue', () => {
-  //     componente.writeValue(3);
-  //     expect(componente.valorAtualClassificacao()).toBe(3);
-  //   });
-
-  //   it('deveria definir classificacao como 1 quando writeValue recebe valor inválido', () => {
-  //     componente.writeValue(0);
-  //     expect(componente.valorAtualClassificacao()).toBe(1);
-
-  //     componente.writeValue(6);
-  //     expect(componente.valorAtualClassificacao()).toBe(1);
-  //   });
 
   //   it('deveria definir readOnly ao chamar setDisabledState', () => {
   //     componente.setDisabledState?.(true);
