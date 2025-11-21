@@ -91,4 +91,59 @@ describe('LivroService', () => {
       service.adicionarLivro(novoLivro);
     }).toThrow(ErroGeneroLiterario);
   });
+
+  // ----------------------
+
+  it('deveria retornar array vazio para gênero inexistente', () => {
+    const resultado = service.obterLivrosPorGenero('inexistente');
+    expect(Array.isArray(resultado)).toBe(true);
+    expect(resultado).toHaveLength(0);
+  });
+
+  it('deveria retornar nova instância de array vazio em chamadas repetidas para gênero inexistente', () => {
+    const a1 = service.obterLivrosPorGenero('x');
+    const a2 = service.obterLivrosPorGenero('x');
+    expect(a1).toHaveLength(0);
+    expect(a2).toHaveLength(0);
+    expect(a1).not.toBe(a2); // garante novo []
+  });
+
+  it('modificar array vazio retornado não deve afetar estado interno', () => {
+    const arr = service.obterLivrosPorGenero('desconhecido');
+    arr.push({
+      titulo: 'Teste',
+      autoria: 'Autor',
+      imagem: '',
+      genero: { id: 'desconhecido', value: 'Desconhecido' },
+      dataLeitura: '2024-01-01',
+      classificacao: 1,
+    } as Livro);
+    expect(arr).toHaveLength(1);
+    const segundaChamada = service.obterLivrosPorGenero('desconhecido');
+    expect(segundaChamada).toHaveLength(0);
+  });
+
+  it('deveria retornar mesma referência para gênero existente e refletir adições', () => {
+    const antes = service.obterLivrosPorGenero('romance');
+    const tamanhoAntes = antes.length;
+    const novoLivro: Livro = {
+      titulo: 'Outro Romance',
+      autoria: 'Alguém',
+      imagem: '',
+      genero: { id: 'romance', value: 'Romance' },
+      dataLeitura: '2024-05-01',
+      classificacao: 4,
+    };
+    service.adicionarLivro(novoLivro);
+    const depois = service.obterLivrosPorGenero('romance');
+    expect(depois).toBe(antes);
+    expect(depois.length).toBe(tamanhoAntes + 1);
+    expect(depois).toContain(novoLivro);
+  });
+
+  it('não deve criar entrada no mapa para gênero inexistente via obterLivrosPorGenero', () => {
+    service.obterLivrosPorGenero('foo-bar-baz');
+    const resultadoDepois = service.obterLivrosPorGenero('foo-bar-baz');
+    expect(resultadoDepois).toHaveLength(0);
+  });
 });
