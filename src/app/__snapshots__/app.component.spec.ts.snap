@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent deveria renderizar o componente com snapshot 1`] = `
+<app-root
+  title={[Function String]}
+>
+  <app-cabecalho
+    alt="O banner principal da página do Organo"
+    src="./assets/imagens/banner.png"
+  >
+    <header
+      class="banner"
+    >
+      <img
+        alt="O banner principal da página do Organo"
+        src="./assets/imagens/banner.png"
+      />
+    </header>
+  </app-cabecalho><main>
+    <router-outlet />
+  </main><app-rodape
+    alt="Rodapé da aplicação"
+    src="./assets/imagens/rodape.png"
+  >
+    <div
+      class="rodape"
+    >
+      <img
+        alt="Rodapé da aplicação"
+        src="./assets/imagens/rodape.png"
+      />
+    </div>
+  </app-rodape>
+</app-root>
+`;
