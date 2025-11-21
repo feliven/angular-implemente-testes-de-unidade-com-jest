@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 import { FormularioComponent } from '../formulario/formulario.component';
 import { LivroService } from '../../services/livro.service';
@@ -12,8 +12,8 @@ describe('FormularioComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FormularioComponent, ReactiveFormsModule, RouterTestingModule],
-      providers: [LivroService, FormBuilder],
+      imports: [FormularioComponent, ReactiveFormsModule],
+      providers: [LivroService, FormBuilder, provideRouter([])],
     });
     fixture = TestBed.createComponent(FormularioComponent);
     componente = fixture.componentInstance;
