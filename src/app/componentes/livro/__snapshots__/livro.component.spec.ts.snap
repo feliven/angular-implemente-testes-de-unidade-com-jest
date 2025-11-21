@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LivroComponent deveria renderizar conteúdo com base em livro 1`] = `
+LivroComponent {
+  "__ngContext__": 15,
+  "livro": [Function],
+}
+`;
