@@ -66,4 +66,32 @@ describe('CabecalhoComponent', () => {
     expect(componente.src()).toBe('');
     expect(componente.alt()).toBe('');
   });
+
+  /// -----------------
+
+  it('deveria manter valores independentes entre src e alt', () => {
+    fixture.componentRef.setInput('src', 'imagem.jpg');
+    fixture.componentRef.setInput('alt', 'Descrição');
+    expect(componente.src()).toBe('imagem.jpg');
+    expect(componente.alt()).toBe('Descrição');
+  });
+
+  it('deveria aceitar URLs com caracteres especiais', () => {
+    const urlComplexa =
+      'https://example.com/path/to/image.jpg?param=value&other=123';
+    fixture.componentRef.setInput('src', urlComplexa);
+    expect(componente.src()).toBe(urlComplexa);
+  });
+
+  it('deveria aceitar texto longo para alt', () => {
+    const textoLongo =
+      'Esta é uma descrição muito longa para testar se o componente aceita textos extensos como alternativa de imagem';
+    fixture.componentRef.setInput('alt', textoLongo);
+    expect(componente.alt()).toBe(textoLongo);
+  });
+
+  it('deveria manter o tipo de entrada como signal', () => {
+    expect(typeof componente.src).toBe('function');
+    expect(typeof componente.alt).toBe('function');
+  });
 });
